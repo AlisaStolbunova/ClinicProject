@@ -3,7 +3,7 @@
 Требования для запуска проекта
 
 База данных:
-MySQL
+MySQL\n
 host=localhost
 port=3306
 username=root
