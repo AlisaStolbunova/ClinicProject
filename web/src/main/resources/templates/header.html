@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <title th:text="#{application.title}"></title>
+    <link rel="stylesheet" href="../css/my.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav th:fragment="menu" class="navbar navbar-inverse">
+    <div class="panel-heading">
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/index}" th:text="#{menu.home}"></a></li>
+            <li><a href="/doctor/all" th:text="#{menu.dl}"></a></li>
+            <li><a href="/departments" th:text="#{menu.deps}"></a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/user/all" th:text="#{menu.users}"></a></li>
+            <li sec:authorize="hasRole('ROLE_USER')"><a href="/account" th:text="#{menu.account}"></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="?lang=en" th:text="#{lang.en}"></a></li>
+            <li><a href="?lang=ru" th:text="#{lang.ru}"></a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}"><span class="glyphicon glyphicon-user"
+                                                                                 th:text="#{menu.signup}"></span></a>
+            </li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}"><span class="glyphicon glyphicon-log-in"
+                                                                                th:text="#{menu.login}"></span></a>
+            </li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"
+                                                                                th:text="#{menu.logout}"></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
+</body>
+</html>

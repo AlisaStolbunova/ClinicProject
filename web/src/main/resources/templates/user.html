@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header :: head"/>
+<body>
+<nav th:insert="header :: menu"/>
+
+<table class="table" style="width: 600px">
+    <tr>
+        <td th:text="#{user.first.name}"></td>
+        <td th:text="#{user.last.name}"></td>
+    </tr>
+    <tr th:if="${users.empty}">
+        <td th:text="#{user.page.zero}"></td>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+    </tr>
+</table>
+
+
+<div th:insert="footer :: copy"></div>
+
+</body>
+</html>

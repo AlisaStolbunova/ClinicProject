@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header :: head"/>
+<body>
+<nav th:insert="header :: menu"/>
+
+<table class="table" style="width: 600px">
+    <tr>
+        <td th:text="#{account.userName}"></td>
+        <td th:text="${user.username}"></td>
+    </tr>
+    <tr>
+        <td th:text="#{account.firstName}"></td>
+        <td th:text="${user.firstName}"></td>
+    </tr>
+    <tr>
+        <td th:text="#{account.lastName}"></td>
+        <td th:text="${user.lastName}"></td>
+    </tr>
+</table>
+
+<p th:unless="${#lists.isEmpty(user.tickets)}" th:text="#{account.tickets}"></p>
+<table th:unless="${#lists.isEmpty(user.tickets)}" class="table" style="width: 600px">
+    <tr>
+        <td th:text="#{account.doctor}"></td>
+        <td th:text="#{account.office}"></td>
+        <td th:text="#{account.time}"></td>
+    </tr>
+    <tr th:each="ticket: ${user.tickets}">
+        <td th:text="${ticket.doctor.name}"></td>
+        <td th:text="${ticket.doctor.post}"></td>
+        <td th:text="${ticket.time}"></td>
+    </tr>
+</table>
+<div th:insert="footer :: copy"></div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="header :: head"/>
+<body>
+<nav th:insert="header :: menu"/>
+<div class="container">
+    <h1 th:text="#{home.page.header}"></h1>
+    <div class="row">
+        <div sec:authorize="isAuthenticated()" class="col-sm-6">
+            <p th:text="#{menu.greet} + ', ' + ${#authentication.getPrincipal().getUser().getFirstName()}"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p th:text="#{home.page.about}"></p>
+        </div>
+    </div>
+</div>
+<div th:insert="footer :: copy"></div>
+</body>
+</html>

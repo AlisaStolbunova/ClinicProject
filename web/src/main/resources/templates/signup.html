@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header :: head"/>
+<body>
+<nav th:insert="header :: menu"/>
+
+<form class="form-horizontal" th:action="@{/signup}" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="firstname" th:text="#{signup.first.name}"></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="firstname" name="firstName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="lastname" th:text="#{signup.first.name}"></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="lastname" name="lastName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="username" th:text="#{signup.login}"></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="username" name="name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd" th:text="#{signup.password}"></label>
+        <div class="col-sm-3">
+            <input type="password" class="form-control" id="pwd" name="password">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" th:text="#{signup.submit}"></button>
+        </div>
+    </div>
+</form>
+
+<div th:insert="footer :: copy"></div>
+
+</body>
+</html>

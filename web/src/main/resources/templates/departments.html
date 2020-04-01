@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="header :: head"/>
+<body>
+<nav th:insert="header :: menu"/>
+
+<div class="list-group">
+    <a th:each="department: ${departments}" th:href="@{/departments/doctors(id=${department.id})}"
+       class="list-group-item" th:text="${department.name}"></a>
+</div>
+<p th:if="${doctors != null and doctors.isEmpty()}" th:text="#{departments.doctors.empty}"></p>
+<table th:unless="${#lists.isEmpty(doctors)}" class="table" style="width: 600px">
+    <tr>
+        <td th:text="#{departments.doctor.name}"></td>
+        <td th:text="#{departments.doctor.post}"></td>
+        <td th:text="#{departments.department.name}"></td>
+        <td th:text="#{departments.doctor.office}"></td>
+        <td th:text="#{departments.doctor.phone}"></td>
+        <td th:text="#{departments.doctor.tickets}"></td>
+        <td></td>
+    </tr>
+    <tr th:each="doctor: ${doctors}">
+        <td th:text="${doctor.name}"></td>
+        <td th:text="${doctor.post}"></td>
+        <td th:text="${doctor.departmentName}"></td>
+        <td th:text="${doctor.office}"></td>
+        <td th:text="${doctor.phoneNumber}"></td>
+        <form th:action="@{/doctor/ticket}" method="post">
+            <td>
+                <select name="id">
+                    <option th:each="ticket: ${doctor.tickets}" th:value="${ticket.id}" th:text="${ticket.time}"/>
+                </select>
+            </td>
+            <td>
+                <button type="submit" th:text="#{doctor.ticket.take}"/>
+            </td>
+        </form>
+    </tr>
+</table>
+
+<div th:insert="footer :: copy"></div>
+
+</body>
+</html>
