@@ -3,7 +3,7 @@
 <head th:insert="header :: head"/>
 <body>
 <nav th:insert="header :: menu"/>
-
+<p th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></p>
 <form class="form-horizontal" th:action="@{/signup}" method="post">
     <div class="form-group">
         <label class="control-label col-sm-2" for="firstname" th:text="#{signup.first.name}"></label>
